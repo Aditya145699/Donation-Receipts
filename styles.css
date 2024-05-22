@@ -1,0 +1,136 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #cfe0e8 10%, #5c7ea9 100%);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure full height for centering */
+  padding: 40px 20px; /* Additional padding for top and bottom */
+}
+
+/* Container Styles */
+.container {
+  background: #f0f4f8;
+  padding: 20px;
+  border-radius: 20px; /* Increased border-radius for a softer look */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* Top Section Styles */
+.top {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 100px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: #00509e;
+  margin-top: 10px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #00509e;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00509e;
+  border-radius: 10px; /* Increased border-radius for inputs */
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #0077b6;
+  outline: none;
+}
+
+button {
+  background: #0077b6;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px; /* Increased border-radius for button */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #00b4d8;
+  transform: translateY(-3px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  button {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}

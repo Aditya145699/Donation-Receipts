@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt</title>
+    <link rel="stylesheet" href="receipt.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <img
+          src="img/WhatsApp Image 2024-05-22 at 21.53.28_45f29487.jpg"
+          alt="Logo"
+          class="logo" />
+        <h1>Didu Maheshwari Yuvak Mandal</h1>
+      </div>
+      <div class="receipt">
+        <p><strong>Serial Number:</strong> <span id="serialNumber"></span></p>
+        <p><strong>Date:</strong> <span id="date"></span></p>
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>Donation Amount:</strong> <span id="amount"></span></p>
+        <p><strong>Mobile Number:</strong> <span id="mobile"></span></p>
+      </div>
+      <button id="downloadBtn">Download Receipt</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script>
+      function getReceiptContent(params) {
+        return `
+                <div class="container">
+                    <div class="top">
+                        <img src="img/WhatsApp Image 2024-05-22 at 21.53.28_45f29487.jpg" alt="Logo" class="logo">
+                        <h1>Didu Maheshwari Yuvak Mandal</h1>
+                    </div>
+                    <div class="receipt">
+                        <p><strong>Serial Number:</strong> ${params.serialNumber}</p>
+                        <p><strong>Date:</strong> ${params.date}</p>
+                        <p><strong>Name:</strong> ${params.name}</p>
+                        <p><strong>Address:</strong> ${params.address}</p>
+                        <p><strong>Donation Amount:</strong> ${params.amount}</p>
+                        <p><strong>Mobile Number:</strong> ${params.mobile}</p>
+                    </div>
+                </div>
+            `;
+      }
+
+      function downloadReceipt() {
+        const params = getQueryParams();
+        const receiptContent = getReceiptContent(params);
+
+        html2pdf()
+          .from(receiptContent)
+          .save(`Receipt_${params.serialNumber}.pdf`);
+      }
+
+      function getQueryParams() {
+        return Object.fromEntries(new URLSearchParams(window.location.search));
+      }
+
+      window.onload = function () {
+        const params = getQueryParams();
+        document.getElementById("serialNumber").textContent =
+          params.serialNumber;
+        document.getElementById("date").textContent = params.date;
+        document.getElementById("name").textContent = params.name;
+        document.getElementById("address").textContent = params.address;
+        document.getElementById("amount").textContent = params.amount;
+        document.getElementById("mobile").textContent = params.mobile;
+
+        document.getElementById("downloadBtn").onclick = downloadReceipt;
+      };
+    </script>
+  </body>
+</html>

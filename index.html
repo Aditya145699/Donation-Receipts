@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <img
+          src="img/WhatsApp Image 2024-05-22 at 21.53.28_45f29487.jpg"
+          alt="Logo"
+          class="logo" />
+        <h1>Didu Maheshwari Yuvak Mandal</h1>
+      </div>
+      <form id="receiptForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label for="serialNumber">Serial Number:</label>
+          <input
+            type="text"
+            id="serialNumber"
+            name="serialNumber"
+            readonly
+            required />
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea id="address" name="address" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="amount">Donation Amount:</label>
+          <input type="number" id="amount" name="amount" required />
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile Number:</label>
+          <input type="number" id="mobile" name="mobile" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+      function incrementSerialNumber() {
+        const serialNumberField = document.getElementById("serialNumber");
+        let serialNumber =
+          parseInt(localStorage.getItem("serialNumber")) || 2400;
+        serialNumber += 1;
+        localStorage.setItem("serialNumber", serialNumber);
+        serialNumberField.value = serialNumber;
+        return serialNumber;
+      }
+
+      function submitForm(event) {
+        event.preventDefault();
+        const form = document.getElementById("receiptForm");
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData).toString();
+        window.location.href = `receipt.html?${params}`;
+      }
+
+      window.onload = function () {
+        incrementSerialNumber();
+      };
+    </script>
+  </body>
+</html>
